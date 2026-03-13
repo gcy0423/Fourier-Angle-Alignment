@@ -26,6 +26,7 @@ cd Fourier-Angle-Alignment
 pip install -v -e .
 pip install -r requirements.txt
 ```
+Please see [get_started.md](docs/en/get_started.md) for the basic usage of MMRotate.
 
 ## 🚀 Results and Configs
 
