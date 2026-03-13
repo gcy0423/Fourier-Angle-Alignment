@@ -5,7 +5,8 @@ from .convfc_rbbox_head import (RotatedConvFCBBoxHead,
 from .gv_bbox_head import GVBBoxHead
 from .rotated_bbox_head import RotatedBBoxHead
 from .strip_head import StripHead_,StripHead
+from .faa_head import FAAHead
 __all__ = [
     'RotatedBBoxHead', 'RotatedConvFCBBoxHead', 'RotatedShared2FCBBoxHead',
-    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead','StripHead','StripHead_'
+    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead','StripHead','StripHead_', 'FAAHead"
 ]
