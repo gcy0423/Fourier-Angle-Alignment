@@ -1,0 +1,9 @@
+-e git+https://gh-proxy.com/github.com/QUVA-Lab/e2cnn.git#egg=e2cnn
+matplotlib
+mmcv-full
+mmdet>= 2.25.1,<3.0.0
+numpy<2.0.0
+pycocotools
+six
+terminaltables
+torch
