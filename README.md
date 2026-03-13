@@ -62,6 +62,57 @@ Specifically, we also provide the configurations that only apply the FAA Head.
 | LSKNet-S + FAA Head | 78.27 (+0.78) | le90 | 1x | [config](./configs/faa/lsk_s_fpn_1x_dota_le90_faahead.py) | [checkpoint](https://pan.baidu.com/s/1VuMQcn33I8SMY9oMDfZ4hg?pwd=vmk3) |
 | Strip R-CNN-S + FAA Head | 78.52 (+0.43) | le90 | 1x | [config](./configs/faa/strip_rcnn_s_fpn_1x_dota_le90_faahead.py) | - |
 
+## 🧩 Plug and Play
+
+Our proposed modules are designed to be lightweight and highly extensible. You can easily integrate them into your own custom detectors by simply copying the corresponding files.
+
+### 1. FAAFusion
+**File:** `mmrotate/models/necks/faafusion.py`
+
+`FAAFusion` serves as a plug-and-play module for the feature pyramid network. It dynamically aligns the orientation of the high-level feature map to match the low-level feature map before fusion.
+
+```python
+from faafusion import FAAFusion
+
+# Initialize the module
+fusion_module = FAAFusion(m=7, c_mid=16)
+
+# Inputs:
+# x_high: Tensor of shape [B, C, H_h, W_h] (High-level feature)
+# x_low:  Tensor of shape [B, C, H_l, W_l] (Low-level feature)
+
+# Output:
+# fused:  Tensor of shape [B, C, H_l, W_l] (Aligned and fused feature)
+fused_feature = fusion_module(x_high, x_low)
+```
+>**Note**: We also provide FAAFusionFPN in the same file, which is a ready-to-use FPN variant integrating FAAFusion.
+
+### 2. FAA Head
+**File:** `mmrotate/models/roi_heads/bbox_heads/faa_head.py`
+
+`FAAHead` can directly replace standard RoI heads. It explicitly aligns the 7x7 RoI features to a canonical direction using frequency spectrum analysis, effectively alleviating the task conflict between classification and regression.
+
+```python
+from faahead import FAAHead
+
+# Initialize the head (arguments are inherited from RotatedShared2FCBBoxHead)
+faa_head = FAAHead(
+    num_classes=15, 
+    in_channels=256, 
+    fc_out_channels=1024, 
+    roi_feat_area=7*7
+)
+
+# Input:
+# x: RoI features of shape [N, C, 7, 7] (where C is typically 256)
+
+# Outputs:
+# cls_score: Classification logits
+# bbox_pred: Bounding box regression offsets
+cls_score, bbox_pred = faa_head(x)
+```
+
+
 ## 📖 Citation
 
 If you find this work useful for your research, please consider citing our paper:
