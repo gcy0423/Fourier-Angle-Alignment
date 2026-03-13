@@ -8,5 +8,5 @@ from .strip_head import StripHead_,StripHead
 from .faa_head import FAAHead
 __all__ = [
     'RotatedBBoxHead', 'RotatedConvFCBBoxHead', 'RotatedShared2FCBBoxHead',
-    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead','StripHead','StripHead_', 'FAAHead"
+    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead','StripHead','StripHead_', 'FAAHead'
 ]
