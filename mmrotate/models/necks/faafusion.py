@@ -283,9 +283,7 @@ class FAAFusionFPN(FPN):
                     prev_shape = laterals[i - 1].shape[2:]
                     upsampled = F.interpolate(laterals[i], size=prev_shape, **self.upsample_cfg)
                 laterals[i - 1] = laterals[i - 1] + upsampled
-            elif mode == 'fam':
-                # Use FAMFusionK2K: high = laterals[i], low = laterals[i-1]
-                # Note: FAM expects (x_high, x_low) and returns fused low-res map
+            elif mode == 'faa':
                 fused_low = self.fam_modules[fusion_idx](laterals[i], laterals[i - 1])
                 laterals[i - 1] = fused_low
             else:
