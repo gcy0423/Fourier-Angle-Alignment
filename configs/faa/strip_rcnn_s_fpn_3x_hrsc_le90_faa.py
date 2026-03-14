@@ -4,6 +4,7 @@ _base_ = [
 ]
 
 angle_version = 'le90'
+find_unused_parameters=True
 # gpu_number = 8
 # fp16 = dict(loss_scale='dynamic')
 model = dict(
