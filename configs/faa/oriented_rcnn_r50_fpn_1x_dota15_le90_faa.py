@@ -4,6 +4,7 @@ _base_ = [
 ]
 
 angle_version = 'le90'
+find_unused_parameters=True
 model = dict(
     type='OrientedRCNN',
     backbone=dict(
