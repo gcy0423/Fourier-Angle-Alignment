@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 # 输入文件夹路径和输出文件夹路径
 input_folder = '/data2/guchangyu/datasets/DIOR-R/Annotations/Oriented Bounding Boxes'
 output_folder = '/data2/guchangyu/datasets/DIOR-R/Annotations/Oriented Bounding Boxes TXT'
+os.makedirs(output_folder, exist_ok=True)
 
 # 遍历输入文件夹中的所有XML文件
 for filename in os.listdir(input_folder):
