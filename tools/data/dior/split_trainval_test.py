@@ -6,6 +6,8 @@ source_folder = '/data2/guchangyu/datasets/DIOR-R/Annotations/Oriented Bounding 
 
 trainval_target_folder = '/data2/guchangyu/datasets/dior_to_dota/trainval/annfiles'
 test_target_folder = '/data2/guchangyu/datasets/dior_to_dota/test/annfiles'
+os.makedirs(trainval_target_folder, exist_ok=True)
+os.makedirs(test_target_folder, exist_ok=True)
 
 # 读取train.txt文件中的文件名列表
 with open('/data2/guchangyu/datasets/DIOR-R/ImageSets/Main/train.txt', 'r') as file:
