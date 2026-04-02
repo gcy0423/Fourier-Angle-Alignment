@@ -73,18 +73,21 @@ Our proposed modules are designed to be lightweight and highly extensible. You c
 `FAAFusion` serves as a plug-and-play module for the feature pyramid network. It dynamically aligns the orientation of the high-level feature map to match the low-level feature map before fusion.
 
 ```python
-from faafusion import FAAFusion
-
-# Initialize the module
-fusion_module = FAAFusion(m=7, c_mid=16)
-
-# Inputs:
-# x_high: Tensor of shape [B, C, H_h, W_h] (High-level feature)
-# x_low:  Tensor of shape [B, C, H_l, W_l] (Low-level feature)
-
-# Output:
-# fused:  Tensor of shape [B, C, H_l, W_l] (Aligned and fused feature)
-fused_feature = fusion_module(x_high, x_low)
+model = dict(
+    type='OrientedRCNN',
+    ......
+    neck=dict(
+        type='FAAFusionFPN',
+        in_channels=[256, 512, 1024, 2048],
+        out_channels=256,
+        num_outs=5,
+        fusion_modes=['add', 'add', 'faa'],  # P5→P4: add, P4→P3: add, P3→P2: faa
+        start_level=0,
+        end_level=-1,
+        add_extra_convs='on_input',
+        fam_cfg=dict(m=7, c_mid=64)),
+    ......
+}
 ```
 >**Note**: We also provide FAAFusionFPN in the same file, which is a ready-to-use FPN variant integrating FAAFusion.
 
@@ -94,23 +97,22 @@ fused_feature = fusion_module(x_high, x_low)
 `FAAHead` can directly replace standard RoI heads. It explicitly aligns the 7x7 RoI features to a canonical direction using frequency spectrum analysis, effectively alleviating the task conflict between classification and regression.
 
 ```python
-from faahead import FAAHead
-
-# Initialize the head (arguments are inherited from RotatedShared2FCBBoxHead)
-faa_head = FAAHead(
-    num_classes=15, 
-    in_channels=256, 
-    fc_out_channels=1024, 
-    roi_feat_area=7*7
-)
-
-# Input:
-# x: RoI features of shape [N, C, 7, 7] (where C is typically 256)
-
-# Outputs:
-# cls_score: Classification logits
-# bbox_pred: Bounding box regression offsets
-cls_score, bbox_pred = faa_head(x)
+model = dict(
+    type='OrientedRCNN',
+    ......
+    roi_head=dict(
+        type='OrientedStandardRoIHead',
+        ......
+        bbox_head=dict(
+            type='FAAHead',
+            in_channels=256,
+            fc_out_channels=1024,
+            roi_feat_size=7,
+            num_classes=15,
+            ......),
+        ......),
+    ......
+}
 ```
 
 
@@ -129,4 +131,4 @@ If you find this work useful for your research, please consider citing our paper
 
 ## 💖 Acknowledgement
 
-This project is based on [MMRotate](https://github.com/open-mmlab/mmrotate) and [LSKNet](https://github.com/cabshare/LSKNet). We thank the authors for their wonderful open-source efforts.
+This project is based on [MMRotate](https://github.com/open-mmlab/mmrotate) and [LSKNet](https://github.com/zcablii/LSKNet). We thank the authors for their wonderful open-source efforts.
