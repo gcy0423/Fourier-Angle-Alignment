@@ -61,7 +61,7 @@ Specifically, we also provide the configurations that only apply the FAA Head.
 
 | Model |      mAP      | Angle | lr schd | Config | Download |
 | :--- |:-------------:| :---: | :---: | :--- | :---: |
-| Oriented R-CNN + FAA Head | 76.18 (+0.31) | le90 | 1x | [config](./configs/faa/oriented_rcnn_r50_fpn_1x_dota_le90_faahead.py) | - |
+| Oriented R-CNN + FAA Head | 76.18 (+0.31) | le90 | 1x | [config](./configs/faa/oriented_rcnn_r50_fpn_1x_dota_le90_faahead.py) | [checkpoint](https://pan.baidu.com/s/1ARPgBiQ9sKAZSsZFjMdVvg?pwd=2wm6) |
 | LSKNet-S + FAA Head | 78.27 (+0.78) | le90 | 1x | [config](./configs/faa/lsk_s_fpn_1x_dota_le90_faahead.py) | [checkpoint](https://pan.baidu.com/s/1VuMQcn33I8SMY9oMDfZ4hg?pwd=vmk3) |
 | Strip R-CNN-S + FAA Head | 78.52 (+0.43) | le90 | 1x | [config](./configs/faa/strip_rcnn_s_fpn_1x_dota_le90_faahead.py) | - |
 
