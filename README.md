@@ -39,7 +39,7 @@ Here we provide the configuration files for FAA applied to different baseline de
 | :--- |:-------------:| :---: | :---: | :--- | :---: |
 | Oriented R-CNN + FAA | 76.55 (+0.68) | le90 | 1x | [config](./configs/faa/oriented_rcnn_r50_fpn_1x_dota_le90_faa.py) | [checkpoint](https://pan.baidu.com/s/1eQ87OptAnN8jz6EF2g2s8A?pwd=3pyb) |
 | LSKNet-S + FAA | 78.49 (+1.00) | le90 | 1x | [config](./configs/faa/lsk_s_fpn_1x_dota_le90_faa.py) | - |
-| Strip R-CNN-S + FAA | 78.72 (+0.63) | le90 | 1x | [config](./configs/faa/strip_rcnn_s_fpn_1x_dota_le90_faa.py) | - |
+| Strip R-CNN-S + FAA | 78.72 (+0.63) | le90 | 1x | [config](./configs/faa/strip_rcnn_s_fpn_1x_dota_le90_faa.py) | [checkpoint](https://pan.baidu.com/s/1qug56M98gjl0iBSc3U7mPw?pwd=hsqx) |
 
 ### DOTA-v1.5
 | Model |      mAP      | Angle | lr schd | Config |
