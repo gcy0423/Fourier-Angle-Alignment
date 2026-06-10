@@ -126,8 +126,10 @@ If you find this work useful for your research, please consider citing our paper
 @InProceedings{gcy2026faa,
   title={Fourier Angle Alignment for Oriented Object Detection in Remote Sensing},
   author={Gu, Changyu and Chen, Linwei and Gu, Lin and Fu, Ying},
-  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year={2026}
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  month={June},
+  year={2026},
+  pages={42225-42235}
 }
 ```
 
