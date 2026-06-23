@@ -11,7 +11,7 @@ from mmengine.model.weight_init import trunc_normal_init, normal_init
 from mmengine.logging import MMLogger
 
 from mmrotate.models.builder import ROTATED_BACKBONES
-from mmrotate.models.utils import autopad, make_divisible, BHWC2BCHW, BCHW2BHWC
+from .modules import autopad, make_divisible, BHWC2BCHW, BCHW2BHWC
 
 
 class GSiLU(BaseModule):
