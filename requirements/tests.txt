@@ -16,3 +16,5 @@ wheel
 xdoctest>=0.10.0
 yapf
 timm
+antialiased-cnns
+einops
